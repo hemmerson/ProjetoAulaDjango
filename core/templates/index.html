@@ -6,12 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-
+    <form action="{% if pessoa %}{% url 'update' pessoa.id %}{% else %}{% url 'salvar' %}{% endif %}" method="post">
+        {% csrf_token %}
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{ pessoa.nome }}">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ pessoa.email }}">
+        <label for="idade">Idade:</label>
+        <input type="number" name="idade" id="idade" value="{{ pessoa.idade }}">
+        <button type="submit">{% if pessoa %}Atualizar{% else %}Salvar{% endif %}</button>
+    </form>
+    <hr/>
     <table border=1>
         <thead>
             <th>Nome</th>
             <th>Email</th>
             <th>Idade</th>
+            <th colspan="2">Links</th>
         </thead>
         <tbody>
             {% for pessoa in pessoas %}
@@ -19,9 +30,12 @@
                     <td>{{ pessoa.nome }}</td>
                     <td>{{ pessoa.email }}</td>
                     <td>{{ pessoa.idade }}</td>
+                    <td><a href="{% url 'editar' pessoa.id %}">Editar</a></td>
+                    <td><a href="{% url 'deletar' pessoa.id %}">Deletar</a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
+
 </html>
