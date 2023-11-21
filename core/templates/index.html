@@ -19,6 +19,7 @@
     <hr/>
     <table border=1>
         <thead>
+            <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Idade</th>
@@ -27,6 +28,7 @@
         <tbody>
             {% for pessoa in pessoas %}
                 <tr>
+                    <td>{{ pessoa.id }}</td>
                     <td>{{ pessoa.nome }}</td>
                     <td>{{ pessoa.email }}</td>
                     <td>{{ pessoa.idade }}</td>

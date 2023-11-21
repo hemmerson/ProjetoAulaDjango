@@ -24,7 +24,6 @@ def update(request, id):
     pessoa.email = request.POST.get("email")
     pessoa.idade = int(request.POST.get("idade"))
     pessoa.save()
-    pessoas = Pessoa.objects.all()
     return redirect(home)
 
 def delete(request, id):
